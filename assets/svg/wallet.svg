@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" viewBox="0 0 62 62">
+    <g id="wallet" transform="translate(-157 -231)">
+        <rect id="Rectangle_6668" data-name="Rectangle 6668" width="62" height="62" transform="translate(157 231)" fill="#fff" opacity="0"/>
+        <g id="wallet_1_" data-name="wallet (1)" transform="translate(161.072 206.002)">
+            <path id="Path_60265" data-name="Path 60265" d="M49.714,102.86H48V97.717A1.713,1.713,0,0,0,46.285,96H5.143A5.149,5.149,0,0,0,0,101.146V132a5.149,5.149,0,0,0,5.143,5.143H49.714a1.715,1.715,0,0,0,1.714-1.714V104.574A1.713,1.713,0,0,0,49.714,102.86Z" transform="translate(0 -57.148)" fill="#2d69ed"/>
+            <path id="Path_60266" data-name="Path 60266" d="M33.714,128H73.142v3.429H33.714a1.714,1.714,0,1,1,0-3.429Z" transform="translate(-28.571 -85.719)" fill="#fafafa"/>
+            <path id="Path_60267" data-name="Path 60267" d="M367.428,266.289H357.143A5.145,5.145,0,0,1,352,261.146h0A5.142,5.142,0,0,1,357.143,256h10.286a1.715,1.715,0,0,1,1.714,1.714v6.857A1.715,1.715,0,0,1,367.428,266.289Z" transform="translate(-314.286 -200.005)" fill="#1b4fc1"/>
+            <path id="Path_60268" data-name="Path 60268" d="M111.973,45.712l-6.384-12.768a1.72,1.72,0,0,0-2.3-.768L76.224,45.712Z" transform="translate(-68.057)" fill="#008f58"/>
+            <path id="Path_60269" data-name="Path 60269" d="M32,45.723H65.63L59.247,32.955a1.716,1.716,0,0,0-2.3-.765L32,44.663Z" transform="translate(-28.571 -0.01)" fill="#b8e1d1"/>
+        </g>
+    </g>
+</svg>

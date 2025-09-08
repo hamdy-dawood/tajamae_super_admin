@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32.175" viewBox="0 0 32 32.175">
+  <g id="Receipt" transform="translate(-319 -442.825)">
+    <rect id="Rectangle_5179" data-name="Rectangle 5179" width="32" height="32" transform="translate(319 443)" fill="#fff" opacity="0"/>
+    <g id="Group_6331" data-name="Group 6331" transform="translate(0 -1)">
+      <circle id="Ellipse_9" data-name="Ellipse 9" cx="10" cy="10" r="10" transform="translate(331 456)" fill="#fff" opacity="0.15"/>
+      <g id="Receipt-2" data-name="Receipt" transform="translate(323 444)">
+        <path id="Path_17590" data-name="Path 17590" d="M0,0H24V24H0Z" fill="none"/>
+        <path id="Path_17591" data-name="Path 17591" d="M5,25.849V5.539A2.539,2.539,0,0,1,7.539,3H20.233a2.539,2.539,0,0,1,2.539,2.539V25.849l-3.808-2.539-2.539,2.539-2.539-2.539-2.539,2.539L8.808,23.311,5,25.849" transform="translate(-1.886 -2.425)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <path id="Path_17592" data-name="Path 17592" d="M17.218,16.218V13.478a2.739,2.739,0,0,0-2.739-2.739H9L11.739,8m0,5.478L9,10.739" transform="translate(-1.109 -1.109)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      </g>
+    </g>
+  </g>
+</svg>

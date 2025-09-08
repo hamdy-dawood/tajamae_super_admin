@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="43.999" height="44" viewBox="0 0 43.999 44">
+  <g id="add_user" transform="translate(-283 -266)">
+    <g id="Group_6315" data-name="Group 6315" transform="translate(-42 7)">
+      <g id="Group_6314" data-name="Group 6314" transform="translate(325 259)">
+        <g id="Group_6313" data-name="Group 6313">
+          <circle id="Ellipse_3" data-name="Ellipse 3" cx="22" cy="22" r="22" fill="#e9f0fd"/>
+          <path id="Intersection_1" data-name="Intersection 1" d="M0,29.849c1.3-4.6,7.764-8.1,15.538-8.1,8.124,0,14.814,3.82,15.683,8.731A22,22,0,0,1,0,29.849Z" transform="translate(6.078 7.333)" fill="#2d69ed"/>
+          <path id="Path_17589" data-name="Path 17589" d="M9.167,0A9.167,9.167,0,1,1,0,9.167,9.167,9.167,0,0,1,9.167,0Z" transform="translate(12.833 7.333)" fill="#2d69ed"/>
+        </g>
+      </g>
+    </g>
+    <g id="Group_6320" data-name="Group 6320" transform="translate(-3.667 0.001)">
+      <circle id="Ellipse_8" data-name="Ellipse 8" cx="9.167" cy="9.167" r="9.167" transform="translate(286.667 291.666)" fill="#fff"/>
+      <path id="Union_5" data-name="Union 5" d="M4.069,8.952V5.7H.814a.814.814,0,0,1,0-1.628H4.069V.814A.814.814,0,0,1,5.7.814V4.069H8.952a.814.814,0,0,1,0,1.628H5.7V8.952a.814.814,0,0,1-1.628,0Z" transform="translate(290.95 295.95)" fill="#2d69ed"/>
+    </g>
+  </g>
+</svg>

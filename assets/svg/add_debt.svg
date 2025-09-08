@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="add_debt" transform="translate(-319 -443)">
+    <rect id="Rectangle_5179" data-name="Rectangle 5179" width="32" height="32" transform="translate(319 443)" fill="#fff" opacity="0"/>
+    <g id="Group_6331" data-name="Group 6331" transform="translate(0 -1)">
+      <circle id="Ellipse_9" data-name="Ellipse 9" cx="10" cy="10" r="10" transform="translate(331 456)" fill="#fff" opacity="0.15"/>
+      <g id="Receipt" transform="translate(323 444.175)">
+        <path id="Path_17590" data-name="Path 17590" d="M0,0H24V24H0Z" fill="none"/>
+        <path id="Path_17591" data-name="Path 17591" d="M22.772,26.6a.75.75,0,0,1-.416-.126l-3.3-2.2-2.1,2.1a.75.75,0,0,1-1.061,0l-2.008-2.008L11.877,26.38a.75.75,0,0,1-1.061,0l-2.1-2.1-3.3,2.2a.75.75,0,0,1-1.166-.624V5.539A3.293,3.293,0,0,1,7.539,2.25H20.233a3.293,3.293,0,0,1,3.289,3.289V25.849a.75.75,0,0,1-.75.75Zm-8.886-4.039a.748.748,0,0,1,.53.22l2.008,2.008,2.008-2.008a.75.75,0,0,1,.946-.094l2.642,1.761V5.539A1.791,1.791,0,0,0,20.233,3.75H7.539A1.791,1.791,0,0,0,5.75,5.539V24.448l2.642-1.761a.75.75,0,0,1,.946.094l2.008,2.008,2.008-2.008A.748.748,0,0,1,13.886,22.561Z" transform="translate(-1.886 -2.425)" fill="#fff"/>
+        <g id="Group_6332" data-name="Group 6332" transform="translate(-0.498 0.502)">
+          <path id="Line_1" data-name="Line 1" d="M6.9.75H.1A.8.8,0,0,1-.75,0,.8.8,0,0,1,.1-.75H6.9a.8.8,0,0,1,.85.75A.8.8,0,0,1,6.9.75Z" transform="translate(9 10.398)" fill="#fff"/>
+          <path id="Line_2" data-name="Line 2" d="M0,7.746A.8.8,0,0,1-.75,6.9V.1A.8.8,0,0,1,0-.75.8.8,0,0,1,.75.1V6.9A.8.8,0,0,1,0,7.746Z" transform="translate(12.498 6.9)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="translate" transform="translate(-319 -443)">
+    <rect id="Rectangle_5179" data-name="Rectangle 5179" width="32" height="32" transform="translate(319 443)" fill="#fff" opacity="0"/>
+    <g id="Group_6331" data-name="Group 6331" transform="translate(0 -1)">
+      <circle id="Ellipse_9" data-name="Ellipse 9" cx="10" cy="10" r="10" transform="translate(331 456)" fill="#fff" opacity="0.15"/>
+      <g id="translate-2" data-name="translate" transform="translate(323 446)">
+        <path id="Path_17594" data-name="Path 17594" d="M0,0H24V24H0Z" fill="none"/>
+        <path id="Line_1" data-name="Line 1" d="M18,1H0A1,1,0,0,1-1,0,1,1,0,0,1,0-1H18a1,1,0,0,1,1,1A1,1,0,0,1,18,1Z" transform="translate(3 7)" fill="#fff"/>
+        <path id="Path_17595" data-name="Path 17595" d="M18,11a1,1,0,0,1-.707-1.707L19.586,7,17.293,4.707a1,1,0,1,1,1.414-1.414l3,3a1,1,0,0,1,0,1.414l-3,3A1,1,0,0,1,18,11Z" fill="#fff"/>
+        <path id="Path_17596" data-name="Path 17596" d="M6,21a1,1,0,0,1-.707-.293l-3-3a1,1,0,0,1,0-1.414l3-3a1,1,0,0,1,1.414,1.414L4.414,17l2.293,2.293A1,1,0,0,1,6,21Z" fill="#fff"/>
+        <path id="Line_2" data-name="Line 2" d="M18,1H0A1,1,0,0,1-1,0,1,1,0,0,1,0-1H18a1,1,0,0,1,1,1A1,1,0,0,1,18,1Z" transform="translate(3 17)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>
