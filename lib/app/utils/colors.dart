@@ -33,7 +33,7 @@ class AppColors {
   static const Color notActive = Color.fromRGBO(106, 126, 158, 1);
   static Color baseColorLight = const Color.fromRGBO(0, 0, 0, 0.08);
 
-  static const Color red = Color(0xffF32556);
+  static const Color red = Color.fromRGBO(255, 0, 7, 1.0);
   static const Color red2 = Color.fromRGBO(253, 245, 247, 1);
   static const Color green = Color(0xff11ce61);
   static const Color accentGreen = Color.fromRGBO(245, 251, 248, 1);
@@ -47,7 +47,6 @@ class AppColors {
   static const Color pink = Color.fromRGBO(197, 126, 186, 1);
   static const Color transparent = Colors.transparent;
 
-  static const Color color1 = Color.fromRGBO(255, 0, 7, 1.0);
   static const Color colorRed1 = Color(0xffDF0032);
   static const Color colorRed2 = Color(0xffFF0050);
   static const Color colorRed3 = Color(0xffCC0938);

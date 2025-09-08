@@ -30,50 +30,42 @@ class EventContainer extends StatelessWidget {
         ),
         child: Row(
           children: [
-            SvgIcon(
-              icon: ImageManager.person,
-              color: AppColors.primary,
-              height: 35,
-            ),
-            SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 10),
                   CustomText(
-                    text: eventsEntity.displayName,
+                    text: eventsEntity.title,
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 22,
+                    maxLines: 10,
+                  ),
+                  SizedBox(height: 5),
+                  CustomText(
+                    text: eventsEntity.address,
                     color: AppColors.black,
                     fontWeight: FontWeight.w400,
                     fontSize: 16,
                     maxLines: 3,
                   ),
-                  SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 15,
-                          vertical: 5,
-                        ),
-                        decoration: BoxDecoration(
-                          color:
-                              eventsEntity.active
-                                  ? AppColors.color3
-                                  : AppColors.red,
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        child: CustomText(
-                          text: eventsEntity.active ? 'نشطة' : 'غير نشطة',
-                          color: AppColors.white,
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                    ],
-                  ),
                 ],
               ),
             ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+              decoration: BoxDecoration(
+                color: eventsEntity.active ? AppColors.green : AppColors.red,
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: CustomText(
+                text: eventsEntity.active ? 'نشطة' : 'غير نشطة',
+                color: AppColors.white,
+              ),
+            ),
+            SizedBox(width: 10),
+
             // OptionsWidget(userEntity: userEntity, homeCubit: homeCubit),
           ],
         ),

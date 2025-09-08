@@ -37,10 +37,7 @@ class AdminContainer extends StatelessWidget {
         highlightColor: Colors.transparent,
         onTap: () {
           MagicRouter.navigateTo(
-            page: EventsScreen(
-              owner: userEntity.id,
-              cubit: homeCubit,
-            ),
+            page: EventsScreen(owner: userEntity.id, cubit: homeCubit),
           );
         },
         child: Container(
@@ -61,34 +58,21 @@ class AdminContainer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 15,
-                            vertical: 5,
-                          ),
-                          decoration: BoxDecoration(
-                            color:
-                                userEntity.active
-                                    ? AppColors.color3
-                                    : AppColors.red,
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: CustomText(
-                            text: userEntity.active ? 'نشطة' : 'غير نشطة',
-                            color: AppColors.white,
-                          ),
-                        ),
-                        SizedBox(width: 10),
-                      ],
-                    ),
+                    Row(children: [SizedBox(width: 10)]),
                     SizedBox(height: 10),
                     CustomText(
                       text: userEntity.displayName,
+                      color: AppColors.primary,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                      maxLines: 3,
+                    ),
+                    SizedBox(height: 2),
+                    CustomText(
+                      text: "@${userEntity.userName}",
                       color: AppColors.black,
                       fontWeight: FontWeight.w400,
-                      fontSize: 16,
+                      fontSize: 14,
                       maxLines: 3,
                     ),
                     SizedBox(height: 5),
@@ -101,6 +85,17 @@ class AdminContainer extends StatelessWidget {
                       maxLines: 3,
                     ),
                   ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                decoration: BoxDecoration(
+                  color: userEntity.active ? AppColors.green : AppColors.red,
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: CustomText(
+                  text: userEntity.active ? 'نشطة' : 'غير نشطة',
+                  color: AppColors.white,
                 ),
               ),
               OptionsWidget(userEntity: userEntity, homeCubit: homeCubit),
