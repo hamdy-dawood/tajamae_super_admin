@@ -27,4 +27,24 @@ class AuthRepository extends BaseAuthRepository {
       return Left(ServerFailure(error.toString()));
     }
   }
+
+  @override
+  Future<Either<ServerError, void>> addAmin({
+    required String fullName,
+    required String userName,
+    required String password,
+  }) async {
+    try {
+      final result = await dataSource.addAmin(
+        fullName: fullName,
+        userName: userName,
+        password: password,
+      );
+      return Right(result);
+    } on ServerError catch (fail) {
+      return Left(fail);
+    } catch (error) {
+      return Left(ServerFailure(error.toString()));
+    }
+  }
 }

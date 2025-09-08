@@ -41,6 +41,31 @@ class LogInCubit extends Cubit<LogInStates> {
     }
   }
 
+  //======================= ADD ADMIN ===========================
+
+  final adminFormKey = GlobalKey<FormState>();
+  TextEditingController adminFullNameController = TextEditingController();
+  TextEditingController adminUserNameController = TextEditingController();
+  TextEditingController adminPasswordController = TextEditingController();
+
+  Future addAmin() async {
+    if (adminFormKey.currentState!.validate()) {
+      emit(AddAdminLoadingState());
+
+      final response = await repo.addAmin(
+        fullName: adminFullNameController.text,
+        userName: adminUserNameController.text,
+        password: adminPasswordController.text,
+      );
+      response.fold(
+            (l) {
+          emit(AddAdminFailState(message: l.message));
+        },
+            (r)  => emit(AddAdminSuccessState()),
+      );
+    }
+  }
+
   //===========================================================
 
   bool isObscure = true;

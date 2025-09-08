@@ -2,14 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tajamae_super_admin/app/dependancy_injection/dependancy_injection.dart';
+import 'package:tajamae_super_admin/app/helper/extension.dart';
 import 'package:tajamae_super_admin/app/utils/colors.dart';
 import 'package:tajamae_super_admin/app/utils/image_manager.dart';
+import 'package:tajamae_super_admin/app/widget/custom_text.dart';
 import 'package:tajamae_super_admin/app/widget/emit_failed_item.dart';
 import 'package:tajamae_super_admin/app/widget/emit_loading_item.dart';
 import 'package:tajamae_super_admin/app/widget/list_view_pagination.dart';
 import 'package:tajamae_super_admin/app/widget/svg_icons.dart';
 import 'package:tajamae_super_admin/features/home/presentaion/cubit/home_cubit.dart';
 import 'package:tajamae_super_admin/features/home/presentaion/widgets/admin_container.dart';
+import 'package:tajamae_super_admin/features/login/presentation/screens/super_create_admin.dart';
 
 import '../widgets/logout_dialog.dart';
 
@@ -97,6 +100,38 @@ class HomeBody extends StatelessWidget {
                     //   ),
                     // ),
                   ],
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  MagicRouter.navigateTo(page: SuperCreateAdminScreen());
+                },
+                child: Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+                  margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SvgIcon(
+                        icon: ImageManager.add,
+                        color: AppColors.white,
+                        height: 24,
+                      ),
+                      SizedBox(width: 10),
+                      CustomText(
+                        text: "اضافة ادمن",
+                        color: AppColors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Expanded(

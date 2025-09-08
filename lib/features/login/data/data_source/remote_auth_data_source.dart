@@ -19,4 +19,16 @@ class RemoteAuthDataSource extends BaseRemoteAuthDataSource {
     );
     return UserModel.fromJson(response.data);
   }
+
+  @override
+  Future<void> addAmin({
+    required String fullName,
+    required String userName,
+    required String password,
+  }) async {
+    await dioManager.post(
+      ApiConstants.registerUrl,
+      data: {"displayName": fullName, "userName": userName, "password": password},
+    );
+  }
 }

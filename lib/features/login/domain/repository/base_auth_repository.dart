@@ -8,4 +8,10 @@ abstract class BaseAuthRepository {
     required String userName,
     required String password,
   });
+
+  Future<Either<ServerError, void>> addAmin({
+    required String fullName,
+    required String userName,
+    required String password,
+  });
 }
