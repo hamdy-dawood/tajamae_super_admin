@@ -14,6 +14,7 @@ import 'package:tajamae_super_admin/features/home/presentaion/cubit/home_cubit.d
 import 'package:tajamae_super_admin/features/home/presentaion/widgets/admin_container.dart';
 import 'package:tajamae_super_admin/features/login/presentation/screens/super_create_admin.dart';
 
+import '../widgets/config_dialog.dart';
 import '../widgets/logout_dialog.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -41,28 +42,47 @@ class HomeBody extends StatelessWidget {
         backgroundColor: AppColors.white,
         surfaceTintColor: AppColors.white,
         centerTitle: true,
-        title: Image.asset(ImageManager.homeLogo, height: 45),
+        leadingWidth: 120,
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Image.asset(ImageManager.homeLogo, height: 45),
+        ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: GestureDetector(
-              onTap: () {
-                showCupertinoDialog(
-                  context: context,
-                  builder:
-                      (_) => BlocProvider.value(
-                        value: cubit,
-                        child: LogoutDialog(cubit: cubit),
-                      ),
-                );
-              },
-              child: SvgIcon(
-                icon: ImageManager.logout,
-                color: AppColors.primary,
-                height: 25,
-              ),
+          IconButton(
+            onPressed: () {
+              showCupertinoDialog(
+                context: context,
+                builder:
+                    (_) => BlocProvider.value(
+                      value: cubit,
+                      child: ConfigDialog(cubit: cubit),
+                    ),
+              );
+            },
+            icon: SvgIcon(
+              icon: ImageManager.settings,
+              color: AppColors.primary,
+              height: 25,
             ),
           ),
+          IconButton(
+            onPressed: () {
+              showCupertinoDialog(
+                context: context,
+                builder:
+                    (_) => BlocProvider.value(
+                      value: cubit,
+                      child: LogoutDialog(cubit: cubit),
+                    ),
+              );
+            },
+            icon: SvgIcon(
+              icon: ImageManager.logout,
+              color: AppColors.primary,
+              height: 25,
+            ),
+          ),
+          SizedBox(width: 5),
         ],
       ),
       body: BlocBuilder<HomeCubit, HomeState>(

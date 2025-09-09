@@ -79,7 +79,31 @@ class LogOutFailState extends HomeState {
   LogOutFailState({required this.message});
 }
 
-/// ======================== GET USERS ==================//
+
+///===================== CONFIG ========================//
+
+class GetConfigLoadingState extends HomeState {}
+
+class GetConfigSuccessState extends HomeState {}
+
+class GetConfigFailState extends HomeState {
+  final String message;
+
+  GetConfigFailState({required this.message});
+}
+
+class EditConfigLoadingState extends HomeState {}
+
+class EditConfigSuccessState extends HomeState {}
+
+class EditConfigFailState extends HomeState {
+  final String message;
+
+  EditConfigFailState({required this.message});
+}
+
+
+/// ======================== GET EVENTS ==================//
 
 class GetEventsLoadingState extends HomeState {}
 

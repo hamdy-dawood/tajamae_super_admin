@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:tajamae_super_admin/app/network/dio.dart';
+import 'package:tajamae_super_admin/app/network/end_points.dart';
 import 'package:tajamae_super_admin/features/home/domain/entities/user_entity.dart';
 import 'package:tajamae_super_admin/features/home/domain/repositories/base_home_repository.dart';
 
@@ -151,6 +154,62 @@ class HomeCubit extends Cubit<HomeState> {
         emit(LogOutSuccessState());
       },
     );
+  }
+
+  /// =========================== CONFIG ==================//
+
+  final dioManager = DioManager();
+
+  TextEditingController barcodeLicenseController = TextEditingController();
+
+  Future<void> getConfig() async {
+    emit(GetConfigLoadingState());
+    try {
+      final response = await dioManager.get(ApiConstants.configUrl);
+
+      if (response.statusCode == 200) {
+        final data = response.data;
+
+        if (data != null) {
+          barcodeLicenseController.text = data["qrCode"] ?? "";
+        }
+
+        emit(GetConfigSuccessState());
+      } else {
+        emit(GetConfigFailState(message: "${response.statusCode}"));
+      }
+    } on DioException catch (e) {
+      emit(GetConfigFailState(message: e.message ?? ""));
+    } catch (e) {
+      emit(GetConfigFailState(message: 'An unknown error: $e'));
+    }
+  }
+
+  Future<void> editConfig() async {
+    emit(EditConfigLoadingState());
+    try {
+      final response = await dioManager.put(
+        ApiConstants.configUrl,
+
+        data: {"qrCode": barcodeLicenseController.text},
+      );
+
+      if (response.statusCode == 200) {
+        final data = response.data;
+
+        if (data != null) {
+          barcodeLicenseController.text = data["qrCode"] ?? "";
+        }
+
+        emit(EditConfigSuccessState());
+      } else {
+        emit(EditConfigFailState(message: "${response.statusCode}"));
+      }
+    } on DioException catch (e) {
+      emit(EditConfigFailState(message: e.message ?? ""));
+    } catch (e) {
+      emit(EditConfigFailState(message: 'An unknown error: $e'));
+    }
   }
 
   ///======================== GET EVENTS =========================///

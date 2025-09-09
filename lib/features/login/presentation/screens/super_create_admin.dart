@@ -48,7 +48,7 @@ class SuperCreateAdminBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 0.2.sh),
+                SizedBox(height: 0.12.sh),
                 const CustomText(
                   text: "اضافة ادمن جديد",
                   color: AppColors.black,
