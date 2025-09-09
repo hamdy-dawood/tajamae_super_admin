@@ -7,6 +7,7 @@ import 'package:tajamae_super_admin/features/home/domain/entities/user_entity.da
 import 'package:tajamae_super_admin/features/home/domain/repositories/base_home_repository.dart';
 
 import '../../domain/entities/events_entity.dart';
+import '../../domain/entities/notifications_entity.dart';
 
 part 'home_state.dart';
 
@@ -210,6 +211,51 @@ class HomeCubit extends Cubit<HomeState> {
     } catch (e) {
       emit(EditConfigFailState(message: 'An unknown error: $e'));
     }
+  }
+
+  ///======================== GET NOTIFICATIONS =========================///
+
+  int notificationPage = 1;
+  bool notificationHasReachedMax = false;
+  List<NotificationsEntity> notifications = [];
+
+  Future<void> getNotifications() async {
+    if (notificationHasReachedMax) {
+      return;
+    }
+    notificationPage == 1
+        ? emit(GetNotificationsLoadingState())
+        : emit(GetNotificationsMoreLoadingState());
+
+    final response = await repo.getNotifications(page: notificationPage);
+
+    response.fold((l) => emit(GetNotificationsFailState(message: l.message)), (
+      r,
+    ) {
+      if (r.isEmpty && notificationPage == 1) {
+        emit(GetNotificationsSuccessState());
+        return;
+      }
+
+      if (r.isEmpty || r.length < 20) {
+        notificationHasReachedMax = true;
+        notifications.addAll(r);
+        emit(GetNotificationsSuccessState());
+        return;
+      }
+      notificationPage == 1 ? notifications = r : notifications.addAll(r);
+
+      notificationPage++;
+      emit(GetNotificationsSuccessState());
+    });
+  }
+
+  //=============================================
+
+  clearNotificationsData() {
+    notificationPage = 1;
+    notificationHasReachedMax = false;
+    notifications.clear();
   }
 
   ///======================== GET EVENTS =========================///

@@ -105,6 +105,20 @@ class EditConfigFailState extends HomeState {
 
 /// ======================== GET EVENTS ==================//
 
+class GetNotificationsLoadingState extends HomeState {}
+
+class GetNotificationsMoreLoadingState extends HomeState {}
+
+class GetNotificationsSuccessState extends HomeState {}
+
+class GetNotificationsFailState extends HomeState {
+  final String message;
+
+  GetNotificationsFailState({required this.message});
+}
+
+/// ======================== GET EVENTS ==================//
+
 class GetEventsLoadingState extends HomeState {}
 
 class GetEventsMoreLoadingState extends HomeState {}

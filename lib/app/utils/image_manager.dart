@@ -65,4 +65,5 @@ class ImageManager {
   static const String bills = '$svgPath/bills.svg';
   static const String dollar = '$svgPath/dollar.svg';
   static const String share = '$svgPath/share.svg';
+  static const String notifications = '$svgPath/notification.svg';
 }

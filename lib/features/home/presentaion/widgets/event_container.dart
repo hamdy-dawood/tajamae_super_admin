@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tajamae_super_admin/app/utils/colors.dart';
-import 'package:tajamae_super_admin/app/utils/image_manager.dart';
 import 'package:tajamae_super_admin/app/widget/custom_text.dart';
-import 'package:tajamae_super_admin/app/widget/svg_icons.dart';
 import 'package:tajamae_super_admin/features/home/presentaion/cubit/home_cubit.dart';
 
 import '../../domain/entities/events_entity.dart';

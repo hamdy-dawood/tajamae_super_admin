@@ -5,6 +5,7 @@ import 'package:tajamae_super_admin/app/network/end_points.dart';
 import 'package:tajamae_super_admin/features/home/data/models/user_model.dart';
 
 import '../models/events_model.dart';
+import '../models/notifications_model.dart';
 import 'base_remote_home_data_source.dart';
 
 class RemoteHomeDataSource extends BaseRemoteHomeDataSource {
@@ -23,12 +24,9 @@ class RemoteHomeDataSource extends BaseRemoteHomeDataSource {
       },
     );
     return List<UserDataModel>.from(
-      (response.data['result'] as List).map(
-        (e) => UserDataModel.fromJson(e),
-      ),
+      (response.data['result'] as List).map((e) => UserDataModel.fromJson(e)),
     );
   }
-
 
   @override
   Future<void> editAccount({
@@ -39,9 +37,7 @@ class RemoteHomeDataSource extends BaseRemoteHomeDataSource {
   }
 
   @override
-  Future<void> resetPassword({
-    required Map<String, dynamic> map,
-  }) async {
+  Future<void> resetPassword({required Map<String, dynamic> map}) async {
     await dioManager.post(ApiConstants.resetPasswordUrl, data: map);
   }
 
@@ -50,6 +46,19 @@ class RemoteHomeDataSource extends BaseRemoteHomeDataSource {
     await dioManager.post(
       ApiConstants.logout,
       data: {"token": Caching.get(key: 'access_token')},
+    );
+  }
+
+  @override
+  Future<List<NotificationsModel>> getNotifications({required int page}) async {
+    final Response response = await dioManager.get(
+      ApiConstants.notificationsUrl,
+      queryParameters: {"page": page},
+    );
+    return List<NotificationsModel>.from(
+      (response.data['result'] as List).map(
+        (e) => NotificationsModel.fromJson(e),
+      ),
     );
   }
 
@@ -68,10 +77,7 @@ class RemoteHomeDataSource extends BaseRemoteHomeDataSource {
       },
     );
     return List<EventsModel>.from(
-      (response.data['result'] as List).map(
-            (e) => EventsModel.fromJson(e),
-      ),
+      (response.data['result'] as List).map((e) => EventsModel.fromJson(e)),
     );
   }
-
 }

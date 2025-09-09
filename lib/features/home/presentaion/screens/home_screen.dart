@@ -16,6 +16,7 @@ import 'package:tajamae_super_admin/features/login/presentation/screens/super_cr
 
 import '../widgets/config_dialog.dart';
 import '../widgets/logout_dialog.dart';
+import 'notifications_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -48,6 +49,16 @@ class HomeBody extends StatelessWidget {
           child: Image.asset(ImageManager.homeLogo, height: 45),
         ),
         actions: [
+          IconButton(
+            onPressed: () {
+              MagicRouter.navigateTo(page: NotificationsScreen(cubit: cubit));
+            },
+            icon: SvgIcon(
+              icon: ImageManager.notifications,
+              color: AppColors.primary,
+              height: 25,
+            ),
+          ),
           IconButton(
             onPressed: () {
               showCupertinoDialog(

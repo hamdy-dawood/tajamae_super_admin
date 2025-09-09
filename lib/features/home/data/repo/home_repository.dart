@@ -5,6 +5,7 @@ import 'package:tajamae_super_admin/features/home/domain/entities/user_entity.da
 import 'package:tajamae_super_admin/features/home/domain/repositories/base_home_repository.dart';
 
 import '../../domain/entities/events_entity.dart';
+import '../../domain/entities/notifications_entity.dart';
 
 class HomeRepository extends BaseHomeRepository {
   final BaseRemoteHomeDataSource dataSource;
@@ -29,7 +30,6 @@ class HomeRepository extends BaseHomeRepository {
     }
   }
 
-
   @override
   Future<Either<ServerError, void>> editAccount({
     required String id,
@@ -44,7 +44,6 @@ class HomeRepository extends BaseHomeRepository {
       return Left(ServerFailure(error.toString()));
     }
   }
-
 
   @override
   Future<Either<ServerError, void>> resetPassword({
@@ -72,6 +71,19 @@ class HomeRepository extends BaseHomeRepository {
     }
   }
 
+  @override
+  Future<Either<ServerError, List<NotificationsEntity>>> getNotifications({
+    required int page,
+  }) async {
+    try {
+      final result = await dataSource.getNotifications(page: page);
+      return Right(result);
+    } on ServerError catch (fail) {
+      return Left(fail);
+    } catch (error) {
+      return Left(ServerFailure(error.toString()));
+    }
+  }
 
   @override
   Future<Either<ServerError, List<EventsEntity>>> getEvents({
@@ -92,5 +104,4 @@ class HomeRepository extends BaseHomeRepository {
       return Left(ServerFailure(error.toString()));
     }
   }
-
 }
