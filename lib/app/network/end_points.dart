@@ -13,7 +13,7 @@ class ApiConstants {
   static String addImageUrl = "/images";
   static String loginUrl = "/auth/login-super";
   static String registerUrl = "/auth/register-admin";
-  static String logout = "/auth/register-admin";
+  static String logout = "/auth/logout";
   static String checkUserNameUrl = "/auth/is-available";
   static String adminsUrl = "/users/admins";
   static String resetPasswordUrl = "/auth/admin/reset-password";

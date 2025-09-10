@@ -43,7 +43,10 @@ class AdminContainer extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.only(right: 15, top: 15, bottom: 15),
           decoration: BoxDecoration(
-            color: AppColors.white,
+            color:
+                userEntity.deleted
+                    ? AppColors.red.withValues(alpha: 0.5)
+                    : AppColors.white,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
@@ -64,7 +67,7 @@ class AdminContainer extends StatelessWidget {
                       text: userEntity.displayName,
                       color: AppColors.primary,
                       fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                      fontSize: 18,
                       maxLines: 3,
                     ),
                     SizedBox(height: 2),
@@ -88,6 +91,9 @@ class AdminContainer extends StatelessWidget {
                 ),
               ),
               Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: userEntity.deleted ? 10 : 0,
+                ),
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 decoration: BoxDecoration(
                   color: userEntity.active ? AppColors.green : AppColors.red,
@@ -98,7 +104,8 @@ class AdminContainer extends StatelessWidget {
                   color: AppColors.white,
                 ),
               ),
-              OptionsWidget(userEntity: userEntity, homeCubit: homeCubit),
+              if (!userEntity.deleted)
+                OptionsWidget(userEntity: userEntity, homeCubit: homeCubit),
             ],
           ),
         ),

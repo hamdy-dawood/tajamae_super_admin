@@ -45,7 +45,7 @@ class RemoteHomeDataSource extends BaseRemoteHomeDataSource {
   Future<void> logOut() async {
     await dioManager.post(
       ApiConstants.logout,
-      data: {"token": Caching.get(key: 'access_token')},
+      data: {"token": Caching.get(key: 'refresh_token')},
     );
   }
 

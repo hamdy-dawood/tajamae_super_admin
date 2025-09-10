@@ -96,7 +96,7 @@ class HomeBodyData extends StatelessWidget {
                         cubit.getNotifications();
                       },
                       itemCount:
-                          cubit.hasReachedMax
+                          cubit.notificationHasReachedMax
                               ? cubit.notifications.length
                               : cubit.notifications.length + 1,
                       itemBuilder: (context, index) {
