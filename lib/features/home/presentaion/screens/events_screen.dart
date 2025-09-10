@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tajamae_super_admin/app/utils/colors.dart';
+import 'package:tajamae_super_admin/app/utils/image_manager.dart';
 import 'package:tajamae_super_admin/app/widget/custom_text.dart';
+import 'package:tajamae_super_admin/app/widget/custom_text_form_field.dart';
 import 'package:tajamae_super_admin/app/widget/emit_failed_item.dart';
 import 'package:tajamae_super_admin/app/widget/emit_loading_item.dart';
 import 'package:tajamae_super_admin/app/widget/list_view_pagination.dart';
+import 'package:tajamae_super_admin/app/widget/svg_icons.dart';
 import 'package:tajamae_super_admin/features/home/presentaion/cubit/home_cubit.dart';
 
 import '../widgets/event_container.dart';
@@ -81,32 +84,32 @@ class HomeBodyData extends StatelessWidget {
                 color: AppColors.white,
                 child: Column(
                   children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.all(15),
-                    //   child: CustomTextFormField(
-                    //     hintText: '\t \t بحث',
-                    //     hintFontSize: 16,
-                    //     suffixIcon: Padding(
-                    //       padding: EdgeInsets.symmetric(horizontal: 12),
-                    //       child: SvgIcon(
-                    //         icon: ImageManager.search,
-                    //         color: AppColors.grey,
-                    //         height: 30,
-                    //       ),
-                    //     ),
-                    //     controller: cubit.searchController,
-                    //     onFieldSubmitted: (value) {
-                    //       cubit.clearUsersData();
-                    //       cubit.getUsers();
-                    //     },
-                    //     filledColor: AppColors.backgroundColor,
-                    //     titleColor: AppColors.black,
-                    //     borderColor: AppColors.transparent,
-                    //     titleFontSize: 16,
-                    //     borderRadius: 14,
-                    //     isLastInput: true,
-                    //   ),
-                    // ),
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: CustomTextFormField(
+                        hintText: 'بحث',
+                        hintFontSize: 16,
+                        suffixIcon: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12),
+                          child: SvgIcon(
+                            icon: ImageManager.search,
+                            color: AppColors.grey,
+                            height: 30,
+                          ),
+                        ),
+                        controller: cubit.eventSearchController,
+                        onFieldSubmitted: (value) {
+                          cubit.clearEventsData();
+                          cubit.getEvents(owner: owner);
+                        },
+                        filledColor: AppColors.backgroundColor,
+                        titleColor: AppColors.black,
+                        borderColor: AppColors.transparent,
+                        titleFontSize: 16,
+                        borderRadius: 14,
+                        isLastInput: true,
+                      ),
+                    ),
                   ],
                 ),
               ),

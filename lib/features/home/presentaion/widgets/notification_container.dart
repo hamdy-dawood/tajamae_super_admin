@@ -15,9 +15,9 @@ class NotificationContainer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       child: Opacity(
-        opacity: notificationsEntity.isSeen ? 0.5 : 1,
+        opacity: notificationsEntity.isSeen ? 0.4 : 1,
         child: Container(
-          padding: const EdgeInsets.only(right: 15, top: 15, bottom: 15),
+          padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(10),
@@ -28,12 +28,11 @@ class NotificationContainer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 10),
                     CustomText(
                       text: notificationsEntity.title,
                       color: AppColors.primary,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 22,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
                       maxLines: 10,
                     ),
                     SizedBox(height: 5),

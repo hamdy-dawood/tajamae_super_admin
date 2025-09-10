@@ -15,6 +15,60 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.repo) : super(HomeInitial());
   BaseHomeRepository repo;
 
+  ///======================== GET NOTIFICATIONS COUNT ========================///
+
+  int count = 0;
+
+  Future<void> getNotificationsCount() async {
+    try {
+      final response = await dioManager.get(
+        ApiConstants.notificationCountUrl,
+        queryParameters: {"isSeen": false},
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final data = response.data;
+
+        if (data != null) {
+          count = data["count"] ?? 0;
+        }
+
+        emit(GetNotificationsCountSuccessState());
+      } else {
+        emit(GetNotificationsCountFailState(message: "${response.statusCode}"));
+      }
+    } on DioException catch (e) {
+      emit(GetNotificationsCountFailState(message: e.message ?? ""));
+    } catch (e) {
+      emit(GetNotificationsCountFailState(message: 'An unknown error: $e'));
+    }
+  }
+
+  ///======================== SEEN NOTIFICATIONS ========================///
+
+  Future<void> seenNotifications() async {
+    emit(SeenNotificationsLoadingState());
+    try {
+      final response = await dioManager.post(
+        ApiConstants.notificationSeenUrl,
+        data: {"isSeen": true},
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        count = 0;
+        emit(SeenNotificationsSuccessState());
+        clearNotificationsData();
+        getNotifications();
+      } else {
+        emit(SeenNotificationsFailState(message: "${response.statusCode}"));
+      }
+    } on DioException catch (e) {
+      emit(SeenNotificationsFailState(message: e.message ?? ""));
+    } catch (e) {
+      emit(SeenNotificationsFailState(message: 'An unknown error: $e'));
+    }
+  }
+
   ///======================== GET ACCOUNTS =========================///
 
   int page = 1;

@@ -20,7 +20,8 @@ class RemoteHomeDataSource extends BaseRemoteHomeDataSource {
       ApiConstants.adminsUrl,
       queryParameters: {
         "page": page,
-        if (searchText.isNotEmpty) 'searchText': searchText.trim(),
+        "deleted": false,
+        if (searchText.isNotEmpty) 'keyword': searchText.trim(),
       },
     );
     return List<UserDataModel>.from(
@@ -73,7 +74,7 @@ class RemoteHomeDataSource extends BaseRemoteHomeDataSource {
       queryParameters: {
         "page": page,
         "owner": owner,
-        if (searchText.isNotEmpty) 'searchText': searchText.trim(),
+        if (searchText.isNotEmpty) 'keyword': searchText.trim(),
       },
     );
     return List<EventsModel>.from(

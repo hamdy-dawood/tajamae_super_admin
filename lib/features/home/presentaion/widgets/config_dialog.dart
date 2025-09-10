@@ -33,7 +33,7 @@ class _ConfigDialogState extends State<ConfigDialog> {
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
       title: CustomText(
-        text: "Change Qr License",
+        text: "صلاحية الماسح الضوئي",
         color: AppColors.black,
         fontWeight: FontWeight.w600,
         textAlign: TextAlign.center,
@@ -57,7 +57,7 @@ class _ConfigDialogState extends State<ConfigDialog> {
                   }
                   return CustomTextFormField(
                     borderColor: AppColors.grey10,
-                    hintText: 'Qr License',
+                    hintText: 'صلاحية الماسح الضوئي',
                     controller: widget.cubit.barcodeLicenseController,
                     filledColor: AppColors.white,
                     isLastInput: true,

@@ -20,4 +20,6 @@ class ApiConstants {
   static String eventsUrl = "/documents/event";
   static String configUrl = "/config";
   static String notificationsUrl = "/notifications";
+  static String notificationCountUrl = "/notifications/count";
+  static String notificationSeenUrl = "/notifications/seen";
 }

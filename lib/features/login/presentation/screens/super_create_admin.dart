@@ -11,6 +11,7 @@ import 'package:tajamae_super_admin/app/widget/custom_text_form_field.dart';
 import 'package:tajamae_super_admin/app/widget/emit_loading_item.dart';
 import 'package:tajamae_super_admin/app/widget/toastification_widget.dart';
 import 'package:tajamae_super_admin/features/home/presentaion/screens/home_screen.dart';
+import 'package:toastification/toastification.dart';
 
 import '../cubit/login_cubit.dart';
 import '../cubit/login_states.dart';
@@ -48,7 +49,7 @@ class SuperCreateAdminBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 0.12.sh),
+                SizedBox(height: 0.05.sh),
                 const CustomText(
                   text: "اضافة ادمن جديد",
                   color: AppColors.black,
@@ -113,6 +114,11 @@ class SuperCreateAdminBody extends StatelessWidget {
                       MagicRouter.navigateTo(
                         page: HomeScreen(),
                         withHistory: false,
+                      );
+                      showToastificationWidget(
+                        message: "تمت الاضافة بنجاح",
+                        context: context,
+                        notificationType: ToastificationType.success,
                       );
                     } else if (state is AddAdminFailState) {
                       showToastificationWidget(

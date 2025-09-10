@@ -5,7 +5,7 @@ import 'package:tajamae_super_admin/app/dependancy_injection/dependancy_injectio
 import 'package:tajamae_super_admin/app/helper/extension.dart';
 import 'package:tajamae_super_admin/app/utils/colors.dart';
 import 'package:tajamae_super_admin/app/utils/image_manager.dart';
-import 'package:tajamae_super_admin/app/widget/custom_text.dart';
+import 'package:tajamae_super_admin/app/widget/custom_text_form_field.dart';
 import 'package:tajamae_super_admin/app/widget/emit_failed_item.dart';
 import 'package:tajamae_super_admin/app/widget/emit_loading_item.dart';
 import 'package:tajamae_super_admin/app/widget/list_view_pagination.dart';
@@ -14,9 +14,9 @@ import 'package:tajamae_super_admin/features/home/presentaion/cubit/home_cubit.d
 import 'package:tajamae_super_admin/features/home/presentaion/widgets/admin_container.dart';
 import 'package:tajamae_super_admin/features/login/presentation/screens/super_create_admin.dart';
 
-import '../widgets/config_dialog.dart';
 import '../widgets/logout_dialog.dart';
 import 'notifications_screen.dart';
+import 'settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,7 +24,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<HomeCubit>()..getUsers(),
+      create:
+          (context) =>
+              getIt<HomeCubit>()
+                ..getNotificationsCount()
+                ..getUsers(),
       child: HomeBody(),
     );
   }
@@ -49,34 +53,48 @@ class HomeBody extends StatelessWidget {
           child: Image.asset(ImageManager.homeLogo, height: 45),
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              MagicRouter.navigateTo(page: NotificationsScreen(cubit: cubit));
+          BlocBuilder<HomeCubit, HomeState>(
+            builder: (context, state) {
+              return Badge.count(
+                isLabelVisible: cubit.count > 0 ? true : false,
+                count: cubit.count,
+                alignment: AlignmentDirectional.topStart,
+                offset: const Offset(0, 2),
+                child: IconButton(
+                  style: IconButton.styleFrom(
+                    backgroundColor: AppColors.backgroundColor,
+                  ),
+                  onPressed: () {
+                    MagicRouter.navigateTo(
+                      page: NotificationsScreen(cubit: cubit),
+                    );
+                  },
+                  icon: SvgIcon(
+                    icon: ImageManager.notifications,
+                    color: AppColors.black,
+                    height: 25,
+                  ),
+                ),
+              );
             },
-            icon: SvgIcon(
-              icon: ImageManager.notifications,
-              color: AppColors.primary,
-              height: 25,
-            ),
           ),
           IconButton(
+            style: IconButton.styleFrom(
+              backgroundColor: AppColors.backgroundColor,
+            ),
             onPressed: () {
-              showCupertinoDialog(
-                context: context,
-                builder:
-                    (_) => BlocProvider.value(
-                      value: cubit,
-                      child: ConfigDialog(cubit: cubit),
-                    ),
-              );
+              MagicRouter.navigateTo(page: SettingsScreen(cubit: cubit));
             },
             icon: SvgIcon(
               icon: ImageManager.settings,
-              color: AppColors.primary,
+              color: AppColors.black,
               height: 25,
             ),
           ),
           IconButton(
+            style: IconButton.styleFrom(
+              backgroundColor: AppColors.backgroundColor,
+            ),
             onPressed: () {
               showCupertinoDialog(
                 context: context,
@@ -89,12 +107,23 @@ class HomeBody extends StatelessWidget {
             },
             icon: SvgIcon(
               icon: ImageManager.logout,
-              color: AppColors.primary,
+              color: AppColors.black,
               height: 25,
             ),
           ),
           SizedBox(width: 5),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          MagicRouter.navigateTo(page: SuperCreateAdminScreen());
+        },
+        backgroundColor: AppColors.primary,
+        child: SvgIcon(
+          icon: ImageManager.add,
+          color: AppColors.white,
+          height: 30,
+        ),
       ),
       body: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
@@ -104,65 +133,33 @@ class HomeBody extends StatelessWidget {
                 color: AppColors.white,
                 child: Column(
                   children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.all(15),
-                    //   child: CustomTextFormField(
-                    //     hintText: '\t \t بحث',
-                    //     hintFontSize: 16,
-                    //     suffixIcon: Padding(
-                    //       padding: EdgeInsets.symmetric(horizontal: 12),
-                    //       child: SvgIcon(
-                    //         icon: ImageManager.search,
-                    //         color: AppColors.grey,
-                    //         height: 30,
-                    //       ),
-                    //     ),
-                    //     controller: cubit.searchController,
-                    //     onFieldSubmitted: (value) {
-                    //       cubit.clearUsersData();
-                    //       cubit.getUsers();
-                    //     },
-                    //     filledColor: AppColors.backgroundColor,
-                    //     titleColor: AppColors.black,
-                    //     borderColor: AppColors.transparent,
-                    //     titleFontSize: 16,
-                    //     borderRadius: 14,
-                    //     isLastInput: true,
-                    //   ),
-                    // ),
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: CustomTextFormField(
+                        hintText: 'بحث',
+                        hintFontSize: 16,
+                        suffixIcon: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12),
+                          child: SvgIcon(
+                            icon: ImageManager.search,
+                            color: AppColors.grey,
+                            height: 30,
+                          ),
+                        ),
+                        controller: cubit.searchController,
+                        onFieldSubmitted: (value) {
+                          cubit.clearUsersData();
+                          cubit.getUsers();
+                        },
+                        filledColor: AppColors.backgroundColor,
+                        titleColor: AppColors.black,
+                        borderColor: AppColors.transparent,
+                        titleFontSize: 16,
+                        borderRadius: 14,
+                        isLastInput: true,
+                      ),
+                    ),
                   ],
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  MagicRouter.navigateTo(page: SuperCreateAdminScreen());
-                },
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-                  margin: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SvgIcon(
-                        icon: ImageManager.add,
-                        color: AppColors.white,
-                        height: 24,
-                      ),
-                      SizedBox(width: 10),
-                      CustomText(
-                        text: "اضافة ادمن",
-                        color: AppColors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16,
-                      ),
-                    ],
-                  ),
                 ),
               ),
               Expanded(
@@ -198,9 +195,19 @@ class HomeBody extends StatelessWidget {
                         if (index == cubit.users.length) {
                           return const EmitLoadingItem(size: 20);
                         }
-                        return AdminContainer(
-                          userEntity: cubit.users[index],
-                          homeCubit: cubit,
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            bottom:
+                                cubit.hasReachedMax
+                                    ? index == cubit.users.length - 1
+                                        ? 80
+                                        : 0
+                                    : 0,
+                          ),
+                          child: AdminContainer(
+                            userEntity: cubit.users[index],
+                            homeCubit: cubit,
+                          ),
                         );
                       },
                     );

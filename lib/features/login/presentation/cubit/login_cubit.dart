@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tajamae_super_admin/app/caching/shared_prefs.dart';
@@ -31,9 +32,12 @@ class LogInCubit extends Cubit<LogInStates> {
           emit(LogInFailState(message: l.message));
         },
         (r) async {
-          Caching.put(key: "userId", value: r.accessToken);
+          Caching.put(key: "userId", value: r.userId);
           Caching.put(key: "access_token", value: r.accessToken);
           Caching.put(key: "refresh_token", value: r.refreshToken);
+
+          FirebaseMessaging.instance.subscribeToTopic("tajamae_super");
+          FirebaseMessaging.instance.subscribeToTopic(r.userId);
 
           emit(LogInSuccessState());
         },
@@ -58,10 +62,8 @@ class LogInCubit extends Cubit<LogInStates> {
         password: adminPasswordController.text,
       );
       response.fold(
-            (l) {
-          emit(AddAdminFailState(message: l.message));
-        },
-            (r)  => emit(AddAdminSuccessState()),
+        (l) => emit(AddAdminFailState(message: l.message)),
+        (r) => emit(AddAdminSuccessState()),
       );
     }
   }

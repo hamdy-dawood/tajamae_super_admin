@@ -4,15 +4,16 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../utils/colors.dart';
 
 class EmitLoadingItem extends StatelessWidget {
-  const EmitLoadingItem({super.key, this.size});
+  const EmitLoadingItem({super.key, this.size, this.color});
 
   final double? size;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: LoadingAnimationWidget.hexagonDots(
-        color: AppColors.primary,
+        color: color ?? AppColors.primary,
         size: size ?? 40,
       ),
     );

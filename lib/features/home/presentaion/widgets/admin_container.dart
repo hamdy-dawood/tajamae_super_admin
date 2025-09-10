@@ -51,12 +51,13 @@ class AdminContainer extends StatelessWidget {
           ),
           child: Row(
             children: [
-              SvgIcon(
-                icon: ImageManager.person,
-                color: AppColors.primary,
-                height: 35,
+              CircleAvatar(
+                radius: 8,
+                backgroundColor: userEntity.active
+                    ? AppColors.green
+                    : AppColors.red,
               ),
-              SizedBox(width: 20),
+              SizedBox(width: 15),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,21 +91,6 @@ class AdminContainer extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: userEntity.deleted ? 10 : 0,
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                decoration: BoxDecoration(
-                  color: userEntity.active ? AppColors.green : AppColors.red,
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: CustomText(
-                  text: userEntity.active ? 'نشطة' : 'غير نشطة',
-                  color: AppColors.white,
-                ),
-              ),
-              if (!userEntity.deleted)
                 OptionsWidget(userEntity: userEntity, homeCubit: homeCubit),
             ],
           ),

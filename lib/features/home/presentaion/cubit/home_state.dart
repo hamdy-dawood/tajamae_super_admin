@@ -5,6 +5,29 @@ abstract class HomeState {}
 
 class HomeInitial extends HomeState {}
 
+///============================ GET NOTIFICATIONS COUNT ==================//
+
+
+class GetNotificationsCountSuccessState extends HomeState {}
+
+class GetNotificationsCountFailState extends HomeState {
+  final String message;
+
+  GetNotificationsCountFailState({required this.message});
+}
+
+///============================ SEEN NOTIFICATIONS ==================//
+
+class SeenNotificationsLoadingState extends HomeState {}
+
+class SeenNotificationsSuccessState extends HomeState {}
+
+class SeenNotificationsFailState extends HomeState {
+  final String message;
+
+  SeenNotificationsFailState({required this.message});
+}
+
 ///============================ GET ACCOUNTS COUNT ==================//
 
 class GetAccountCountLoadingState extends HomeState {}

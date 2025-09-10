@@ -33,6 +33,7 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   void initState() {
     widget.cubit.clearNotificationsData();
+    widget.cubit.getNotificationsCount();
     widget.cubit.getNotifications();
 
     super.initState();
@@ -65,58 +66,83 @@ class HomeBodyData extends StatelessWidget {
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
+        actions: [
+          BlocBuilder<HomeCubit, HomeState>(
+            builder: (context, state) {
+              if (state is SeenNotificationsLoadingState) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: const EmitLoadingItem(
+                    size: 20,
+                    color: AppColors.black,
+                  ),
+                );
+              }
+              return Opacity(
+                opacity: cubit.count > 0 ? 1 : 0.4,
+                child: IconButton(
+                  onPressed: () {
+                    if (cubit.count > 0) cubit.seenNotifications();
+                  },
+                  icon: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: CustomText(
+                      text: "تمييز كمقروء",
+                      color: AppColors.black,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
-      body: BlocBuilder<HomeCubit, HomeState>(
-        builder: (context, state) {
-          return Column(
-            children: [
-              Expanded(
-                child: BlocBuilder<HomeCubit, HomeState>(
-                  builder: (context, state) {
-                    if (state is GetNotificationsLoadingState) {
-                      return const EmitLoadingItem(size: 60);
-                    } else if (state is GetNotificationsFailState) {
-                      return EmitFailedItem(
-                        text: state.message,
-                        wantReload: true,
-                        onTap: () {
-                          cubit.getNotifications();
-                        },
-                      );
-                    } else if (cubit.notifications.isEmpty) {
-                      return SizedBox();
+      body: Column(
+        children: [
+          Expanded(
+            child: BlocBuilder<HomeCubit, HomeState>(
+              builder: (context, state) {
+                if (state is GetNotificationsLoadingState) {
+                  return const EmitLoadingItem(size: 60);
+                } else if (state is GetNotificationsFailState) {
+                  return EmitFailedItem(
+                    text: state.message,
+                    wantReload: true,
+                    onTap: () {
+                      cubit.getNotifications();
+                    },
+                  );
+                } else if (cubit.notifications.isEmpty) {
+                  return SizedBox();
+                }
+                return ListViewPagination(
+                  onRefresh: () async {
+                    await Future.delayed(Duration(seconds: 1));
+                    cubit.clearNotificationsData();
+                    cubit.getNotifications();
+                  },
+                  addEvent: () {
+                    cubit.getNotifications();
+                  },
+                  itemCount:
+                      cubit.notificationHasReachedMax
+                          ? cubit.notifications.length
+                          : cubit.notifications.length + 1,
+                  itemBuilder: (context, index) {
+                    if (index == cubit.notifications.length) {
+                      return const EmitLoadingItem(size: 20);
                     }
-                    return ListViewPagination(
-                      onRefresh: () async {
-                        await Future.delayed(Duration(seconds: 1));
-                        cubit.clearNotificationsData();
-                        cubit.getNotifications();
-                      },
-                      addEvent: () {
-                        cubit.getNotifications();
-                      },
-                      itemCount:
-                          cubit.notificationHasReachedMax
-                              ? cubit.notifications.length
-                              : cubit.notifications.length + 1,
-                      itemBuilder: (context, index) {
-                        if (index == cubit.notifications.length) {
-                          return const EmitLoadingItem(size: 20);
-                        }
-                        return NotificationContainer(
-                          notificationsEntity: cubit.notifications[index],
-                        );
-                      },
+                    return NotificationContainer(
+                      notificationsEntity: cubit.notifications[index],
                     );
                   },
-                ),
-              ),
-            ],
-          );
-        },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
 }
-
-

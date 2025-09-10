@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tajamae_super_admin/app/caching/shared_prefs.dart';
@@ -41,6 +42,8 @@ class LogoutDialog extends StatelessWidget {
             listener: (context, state) {
               if (state is LogOutSuccessState) {
                 OverlayLoadingProgress.stop();
+                FirebaseMessaging.instance.unsubscribeFromTopic("tajamae_super");
+                FirebaseMessaging.instance.unsubscribeFromTopic(Caching.get(key: "userId"));
                 Caching.clearAllData();
                 MagicRouter.navigateTo(page: LoginScreen(), withHistory: false);
               } else if (state is LogOutFailState) {
