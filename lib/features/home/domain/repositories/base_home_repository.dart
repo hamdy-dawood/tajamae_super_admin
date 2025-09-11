@@ -31,5 +31,4 @@ abstract class BaseHomeRepository {
     required String owner,
     required String searchText,
   });
-
 }

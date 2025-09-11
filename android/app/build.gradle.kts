@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.mdsoft.tajamae_super_admin.tajamae_super_admin"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion = "27.0.12077973"
 
     compileOptions {

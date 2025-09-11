@@ -13,7 +13,7 @@ class NotificationContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       child: Opacity(
         opacity: notificationsEntity.isSeen ? 0.4 : 1,
         child: Container(
@@ -27,13 +27,14 @@ class NotificationContainer extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomText(
                       text: notificationsEntity.title,
                       color: AppColors.primary,
                       fontWeight: FontWeight.w400,
                       fontSize: 20,
-                      maxLines: 10,
+                      maxLines: 2,
                     ),
                     SizedBox(height: 5),
                     CustomText(

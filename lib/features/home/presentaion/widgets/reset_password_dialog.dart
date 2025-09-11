@@ -70,7 +70,6 @@ class ResetPasswordDialog extends StatelessWidget {
           ),
         ),
       ),
-
       actions: <Widget>[
         CupertinoDialogAction(
           onPressed: () {

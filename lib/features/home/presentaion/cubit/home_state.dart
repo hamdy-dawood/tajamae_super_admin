@@ -7,7 +7,6 @@ class HomeInitial extends HomeState {}
 
 ///============================ GET NOTIFICATIONS COUNT ==================//
 
-
 class GetNotificationsCountSuccessState extends HomeState {}
 
 class GetNotificationsCountFailState extends HomeState {
@@ -102,7 +101,6 @@ class LogOutFailState extends HomeState {
   LogOutFailState({required this.message});
 }
 
-
 ///===================== CONFIG ========================//
 
 class GetConfigLoadingState extends HomeState {}
@@ -124,7 +122,6 @@ class EditConfigFailState extends HomeState {
 
   EditConfigFailState({required this.message});
 }
-
 
 /// ======================== GET EVENTS ==================//
 

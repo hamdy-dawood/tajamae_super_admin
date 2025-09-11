@@ -245,7 +245,6 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       final response = await dioManager.put(
         ApiConstants.configUrl,
-
         data: {"qrCode": barcodeLicenseController.text},
       );
 

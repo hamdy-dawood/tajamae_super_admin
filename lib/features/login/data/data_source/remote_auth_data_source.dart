@@ -28,7 +28,11 @@ class RemoteAuthDataSource extends BaseRemoteAuthDataSource {
   }) async {
     await dioManager.post(
       ApiConstants.registerUrl,
-      data: {"displayName": fullName, "userName": userName, "password": password},
+      data: {
+        "displayName": fullName,
+        "userName": userName,
+        "password": password
+      },
     );
   }
 }

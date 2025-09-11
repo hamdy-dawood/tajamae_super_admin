@@ -15,15 +15,15 @@ class UserDataModel extends UserDataEntity {
   });
 
   factory UserDataModel.fromJson(Map<String, dynamic> json) => UserDataModel(
-    id: json["_id"],
-    userName: json["userName"],
-    displayName: json["displayName"],
-    role: json["role"],
-    active: json["active"],
-    deleted: json["deleted"],
-    expireDate: DateTime.parse(json["expireDate"]),
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
-    v: json["__v"],
-  );
+        id: json["_id"],
+        userName: json["userName"],
+        displayName: json["displayName"],
+        role: json["role"],
+        active: json["active"],
+        deleted: json["deleted"],
+        expireDate: DateTime.parse(json["expireDate"]),
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        v: json["__v"],
+      );
 }

@@ -18,7 +18,7 @@ class EventContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       child: Container(
         padding: const EdgeInsets.only(right: 15, top: 15, bottom: 15),
         decoration: BoxDecoration(
@@ -43,7 +43,7 @@ class EventContainer extends StatelessWidget {
                     color: AppColors.primary,
                     fontWeight: FontWeight.w600,
                     fontSize: 22,
-                    maxLines: 10,
+                    maxLines: 2,
                   ),
                   SizedBox(height: 5),
                   CustomText(
@@ -51,7 +51,7 @@ class EventContainer extends StatelessWidget {
                     color: AppColors.black,
                     fontWeight: FontWeight.w400,
                     fontSize: 16,
-                    maxLines: 3,
+                    maxLines: 2,
                   ),
                 ],
               ),

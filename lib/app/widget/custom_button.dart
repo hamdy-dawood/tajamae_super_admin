@@ -50,21 +50,19 @@ class CustomButton extends StatelessWidget {
       width: width ?? MediaQuery.of(context).size.width,
       height: height ?? 50,
       decoration: BoxDecoration(
-        gradient:
-            isGradient
-                ? const LinearGradient(
-                  end: Alignment.centerRight,
-                  colors: [
-                    Color.fromRGBO(254, 145, 29, 1),
-                    Color.fromRGBO(9, 147, 167, 1),
-                  ],
-                )
-                : null,
+        gradient: isGradient
+            ? const LinearGradient(
+                end: Alignment.centerRight,
+                colors: [
+                  Color.fromRGBO(254, 145, 29, 1),
+                  Color.fromRGBO(9, 147, 167, 1),
+                ],
+              )
+            : null,
         borderRadius: BorderRadius.circular(borderRadius ?? 8),
-        border:
-            isBorderButton
-                ? Border.all(color: borderColor ?? Colors.black38)
-                : null,
+        border: isBorderButton
+            ? Border.all(color: borderColor ?? Colors.black38)
+            : null,
       ),
       child: MaterialButton(
         onPressed: onTap,
@@ -77,18 +75,17 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius ?? 8),
         ),
         color: color,
-        child:
-            text != null
-                ? FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: CustomText(
-                    text: text!,
-                    color: fontColor!,
-                    fontWeight: fontWeight ?? FontWeight.w700,
-                    fontSize: fontSize!,
-                  ),
-                )
-                : icon ?? widget,
+        child: text != null
+            ? FittedBox(
+                fit: BoxFit.scaleDown,
+                child: CustomText(
+                  text: text!,
+                  color: fontColor!,
+                  fontWeight: fontWeight ?? FontWeight.w700,
+                  fontSize: fontSize!,
+                ),
+              )
+            : icon ?? widget,
       ),
     );
   }

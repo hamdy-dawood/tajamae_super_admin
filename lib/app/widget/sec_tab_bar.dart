@@ -33,19 +33,17 @@ class SecTabBar extends StatelessWidget {
       unselectedLabelColor: AppColors.grey8,
       unselectedLabelStyle: TextStyle(
         fontSize: 16,
-        fontFamily:
-            Caching.getAppLang() == "ar"
-                ? AppConstance.appFontName
-                : AppConstance.appFontName,
+        fontFamily: Caching.getAppLang() == "ar"
+            ? AppConstance.appFontName
+            : AppConstance.appFontName,
         fontWeight: FontWeight.w300,
       ),
       labelColor: AppColors.primary,
       labelStyle: TextStyle(
         fontSize: 16,
-        fontFamily:
-            Caching.getAppLang() == "ar"
-                ? AppConstance.appFontName
-                : AppConstance.appFontName,
+        fontFamily: Caching.getAppLang() == "ar"
+            ? AppConstance.appFontName
+            : AppConstance.appFontName,
         fontWeight: FontWeight.w300,
       ),
       overlayColor: const WidgetStatePropertyAll(Colors.transparent),

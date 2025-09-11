@@ -40,8 +40,8 @@ class MagicRouter {
     Navigator.pushAndRemoveUntil(
       currentContext,
       PageRouteBuilder(
-        transitionsBuilder:
-            (context, animation, secondaryAnimation, child) => child,
+        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+            child,
         pageBuilder: (context, animation, secondaryAnimation) => page,
       ),
       (route) => withHistory,
@@ -52,8 +52,8 @@ class MagicRouter {
     Navigator.pushReplacement(
       currentContext,
       PageRouteBuilder(
-        transitionsBuilder:
-            (context, animation, secondaryAnimation, child) => child,
+        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+            child,
         pageBuilder: (context, animation, secondaryAnimation) => page,
       ),
     );

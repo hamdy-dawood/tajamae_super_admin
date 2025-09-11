@@ -28,11 +28,10 @@ class CustomCachedImage extends StatelessWidget {
       filterQuality: filterQuality,
       fit: fit,
       imageUrl: image,
-      placeholder:
-          (context, url) =>
-              const CircularProgressIndicator(color: AppColors.primary),
-      errorWidget:
-          (context, url, error) => Image.asset(ImageManager.imageError),
+      placeholder: (context, url) =>
+          const CircularProgressIndicator(color: AppColors.primary),
+      errorWidget: (context, url, error) =>
+          Image.asset(ImageManager.imageError),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tajamae_super_admin/app/utils/colors.dart';
 import 'package:tajamae_super_admin/app/utils/image_manager.dart';
+import 'package:tajamae_super_admin/app/widget/custom_constrained_scaffold.dart';
 import 'package:tajamae_super_admin/app/widget/custom_text.dart';
 import 'package:tajamae_super_admin/features/home/presentaion/cubit/home_cubit.dart';
 
@@ -27,7 +28,7 @@ class SettingsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return CustomConstrainedScaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppColors.white,
@@ -48,11 +49,10 @@ class SettingsBody extends StatelessWidget {
             onTap: () {
               showCupertinoDialog(
                 context: context,
-                builder:
-                    (_) => BlocProvider.value(
-                      value: cubit,
-                      child: ConfigDialog(cubit: cubit),
-                    ),
+                builder: (_) => BlocProvider.value(
+                  value: cubit,
+                  child: ConfigDialog(cubit: cubit),
+                ),
               );
             },
           ),

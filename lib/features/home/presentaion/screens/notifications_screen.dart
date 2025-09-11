@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tajamae_super_admin/app/helper/extension.dart';
 import 'package:tajamae_super_admin/app/utils/colors.dart';
 import 'package:tajamae_super_admin/app/widget/custom_text.dart';
 import 'package:tajamae_super_admin/app/widget/emit_failed_item.dart';
 import 'package:tajamae_super_admin/app/widget/emit_loading_item.dart';
+import 'package:tajamae_super_admin/app/widget/grid_view_pagination.dart';
 import 'package:tajamae_super_admin/app/widget/list_view_pagination.dart';
 import 'package:tajamae_super_admin/features/home/presentaion/cubit/home_cubit.dart';
 
@@ -114,28 +116,58 @@ class HomeBodyData extends StatelessWidget {
                     },
                   );
                 } else if (cubit.notifications.isEmpty) {
-                  return SizedBox();
+                  return const SizedBox();
                 }
-                return ListViewPagination(
-                  onRefresh: () async {
-                    await Future.delayed(Duration(seconds: 1));
-                    cubit.clearNotificationsData();
-                    cubit.getNotifications();
-                  },
-                  addEvent: () {
-                    cubit.getNotifications();
-                  },
-                  itemCount:
-                      cubit.notificationHasReachedMax
-                          ? cubit.notifications.length
-                          : cubit.notifications.length + 1,
-                  itemBuilder: (context, index) {
-                    if (index == cubit.notifications.length) {
-                      return const EmitLoadingItem(size: 20);
+
+                return LayoutBuilder(
+                  builder: (context, constraints) {
+                    final isWide = constraints.maxWidth > 900;
+
+                    if (isWide) {
+                      return GridViewPagination(
+                        addEvent: () {
+                          cubit.getNotifications();
+                        },
+                        itemCount: cubit.notificationHasReachedMax
+                            ? cubit.notifications.length
+                            : cubit.notifications.length + 1,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          childAspectRatio: (context.screenWidth / 3) / 220,
+                        ),
+                        itemBuilder: (context, index) {
+                          if (index == cubit.notifications.length) {
+                            return const Center(
+                                child: EmitLoadingItem(size: 20));
+                          }
+                          return NotificationContainer(
+                            notificationsEntity: cubit.notifications[index],
+                          );
+                        },
+                      );
+                    } else {
+                      return ListViewPagination(
+                        onRefresh: () async {
+                          await Future.delayed(const Duration(seconds: 1));
+                          cubit.clearNotificationsData();
+                          cubit.getNotifications();
+                        },
+                        addEvent: () {
+                          cubit.getNotifications();
+                        },
+                        itemCount: cubit.notificationHasReachedMax
+                            ? cubit.notifications.length
+                            : cubit.notifications.length + 1,
+                        itemBuilder: (context, index) {
+                          if (index == cubit.notifications.length) {
+                            return const EmitLoadingItem(size: 20);
+                          }
+                          return NotificationContainer(
+                            notificationsEntity: cubit.notifications[index],
+                          );
+                        },
+                      );
                     }
-                    return NotificationContainer(
-                      notificationsEntity: cubit.notifications[index],
-                    );
                   },
                 );
               },

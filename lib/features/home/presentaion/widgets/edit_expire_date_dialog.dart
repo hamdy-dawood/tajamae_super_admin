@@ -78,7 +78,6 @@ class EditExpireDateDialog extends StatelessWidget {
           ),
         ),
       ),
-
       actions: <Widget>[
         CupertinoDialogAction(
           onPressed: () {

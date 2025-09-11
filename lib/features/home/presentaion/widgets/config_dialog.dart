@@ -74,7 +74,6 @@ class _ConfigDialogState extends State<ConfigDialog> {
           ),
         ),
       ),
-
       actions: <Widget>[
         BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {

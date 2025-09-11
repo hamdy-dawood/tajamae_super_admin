@@ -31,24 +31,23 @@ class _SliderImagesState extends State<SliderImages> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CarouselSlider(
-            items:
-                widget.slider
-                    .map(
-                      (e) => Container(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Image.asset(
-                          e,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return const SizedBox();
-                          },
-                        ),
-                      ),
-                    )
-                    .toList(),
+            items: widget.slider
+                .map(
+                  (e) => Container(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Image.asset(
+                      e,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const SizedBox();
+                      },
+                    ),
+                  ),
+                )
+                .toList(),
             options: CarouselOptions(
               // height: 300,
               onPageChanged: (index, reason) {

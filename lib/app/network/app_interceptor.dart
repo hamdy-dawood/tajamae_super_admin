@@ -25,15 +25,13 @@ class AppInterceptors extends Interceptor {
       String? accessToken = Caching.get(key: "access_token");
       String? refreshToken = Caching.get(key: "refresh_token");
       if (refreshToken != null && refreshToken.isNotEmpty) {
-        await dio
-            .get(
-              ApiConstants.refreshTokenUrl,
-              queryParameters: {"token": refreshToken},
-            )
-            .then((value) {
-              String accessToken = value.data["accesstoken"];
-              Caching.put(key: "access_token", value: accessToken);
-            });
+        await dio.get(
+          ApiConstants.refreshTokenUrl,
+          queryParameters: {"token": refreshToken},
+        ).then((value) {
+          String accessToken = value.data["accesstoken"];
+          Caching.put(key: "access_token", value: accessToken);
+        });
         accessToken = Caching.get(key: "access_token");
         err.requestOptions.headers['Authorization'] = 'Bearer $accessToken';
         return handler.resolve(await dio.fetch(err.requestOptions));

@@ -6,6 +6,7 @@ import 'package:tajamae_super_admin/app/helper/extension.dart';
 import 'package:tajamae_super_admin/app/utils/colors.dart';
 import 'package:tajamae_super_admin/app/utils/image_manager.dart';
 import 'package:tajamae_super_admin/app/widget/custom_button.dart';
+import 'package:tajamae_super_admin/app/widget/custom_constrained_scaffold.dart';
 import 'package:tajamae_super_admin/app/widget/custom_text.dart';
 import 'package:tajamae_super_admin/app/widget/custom_text_form_field.dart';
 import 'package:tajamae_super_admin/app/widget/emit_loading_item.dart';
@@ -34,7 +35,7 @@ class LoginBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<LogInCubit>();
 
-    return Scaffold(
+    return CustomConstrainedScaffold(
       backgroundColor: AppColors.white,
       body: SingleChildScrollView(
         child: Form(

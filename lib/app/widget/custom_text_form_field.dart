@@ -110,8 +110,7 @@ class CustomTextFormField extends StatelessWidget {
           onFieldSubmitted: onFieldSubmitted,
           keyboardType: keyboardType,
           textAlign: textAlign,
-          style:
-              textStyle ??
+          style: textStyle ??
               const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
@@ -119,8 +118,7 @@ class CustomTextFormField extends StatelessWidget {
                 fontFamily: AppConstance.appFontName,
               ),
           readOnly: readOnly,
-          textInputAction:
-              textInputAction ??
+          textInputAction: textInputAction ??
               (isLastInput ? TextInputAction.done : TextInputAction.next),
           obscureText: obscureText,
           maxLines: maxLines,

@@ -27,14 +27,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      leading:
-          withLeading
-              ? IconButton(
-                onPressed: () {},
-                color: AppColors.black,
-                icon: const Icon(Icons.arrow_back_sharp),
-              )
-              : const SizedBox(width: 10),
+      leading: withLeading
+          ? IconButton(
+              onPressed: () {},
+              color: AppColors.black,
+              icon: const Icon(Icons.arrow_back_sharp),
+            )
+          : const SizedBox(width: 10),
       title: FittedBox(
         child: Text(
           text,

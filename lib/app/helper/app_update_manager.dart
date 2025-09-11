@@ -58,12 +58,11 @@ class AppUpdateManager {
     _bundleId = bundleId;
     _navigatorKey = navigatorKey;
     _dio = Dio(
-        BaseOptions(
-          connectTimeout: const Duration(seconds: 15),
-          receiveTimeout: const Duration(seconds: 15),
-        ),
-      )
-      ..interceptors.add(
+      BaseOptions(
+        connectTimeout: const Duration(seconds: 15),
+        receiveTimeout: const Duration(seconds: 15),
+      ),
+    )..interceptors.add(
         PrettyDioLogger(
           requestHeader: true,
           requestBody: true,
@@ -108,18 +107,16 @@ class AppUpdateManager {
       if (response.statusCode != 200) return null;
       final json = response.data as Map<String, dynamic>;
       final appName = json['name']?.toString() ?? 'التطبيق';
-      final latestVersion =
-          Platform.isAndroid
-              ? json['androidVersion']?.toString() ??
-                  json['version']?.toString() ??
-                  '0.0'
-              : json['iosVersion']?.toString() ??
-                  json['version']?.toString() ??
-                  '0.0';
-      final storeUrl =
-          Platform.isAndroid
-              ? json['googlePlayUrl']?.toString() ?? ''
-              : json['appStoreUrl']?.toString() ?? '';
+      final latestVersion = Platform.isAndroid
+          ? json['androidVersion']?.toString() ??
+              json['version']?.toString() ??
+              '0.0'
+          : json['iosVersion']?.toString() ??
+              json['version']?.toString() ??
+              '0.0';
+      final storeUrl = Platform.isAndroid
+          ? json['googlePlayUrl']?.toString() ?? ''
+          : json['appStoreUrl']?.toString() ?? '';
       final isForceUpdate = json['isForceUpdate'] == true;
       if (storeUrl.isEmpty) return null;
       final hasUpdate = _needsUpdate(currentVersion, latestVersion);
@@ -164,16 +161,15 @@ class AppUpdateManager {
     if (context == null || _dialogVisible) return;
     _dialogVisible = true;
     _overlayEntry = OverlayEntry(
-      builder:
-          (_) => Stack(
-            children: [
-              BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
-                child: Container(color: Colors.black.withOpacity(0.3)),
-              ),
-              Center(child: dialog),
-            ],
+      builder: (_) => Stack(
+        children: [
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+            child: Container(color: Colors.black.withOpacity(0.3)),
           ),
+          Center(child: dialog),
+        ],
+      ),
     );
     final overlay = _navigatorKey.currentState?.overlay;
     if (overlay != null && _overlayEntry != null)

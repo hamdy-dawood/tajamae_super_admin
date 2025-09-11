@@ -3,7 +3,6 @@ import '../../domain/entities/login_entity.dart';
 class UserModel extends UserEntity {
   UserModel({
     required super.userId,
-
     required super.accessToken,
     required super.refreshToken,
   });

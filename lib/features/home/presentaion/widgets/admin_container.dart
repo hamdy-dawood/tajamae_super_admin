@@ -29,7 +29,7 @@ class AdminContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       child: InkWell(
         splashColor: Colors.transparent,
         hoverColor: Colors.transparent,
@@ -43,19 +43,17 @@ class AdminContainer extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.only(right: 15, top: 15, bottom: 15),
           decoration: BoxDecoration(
-            color:
-                userEntity.deleted
-                    ? AppColors.red.withOpacity(0.5)
-                    : AppColors.white,
+            color: userEntity.deleted
+                ? AppColors.red.withOpacity(0.5)
+                : AppColors.white,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
             children: [
               CircleAvatar(
                 radius: 8,
-                backgroundColor: userEntity.active
-                    ? AppColors.green
-                    : AppColors.red,
+                backgroundColor:
+                    userEntity.active ? AppColors.green : AppColors.red,
               ),
               SizedBox(width: 15),
               Expanded(
@@ -69,7 +67,7 @@ class AdminContainer extends StatelessWidget {
                       color: AppColors.primary,
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
-                      maxLines: 3,
+                      maxLines: 2,
                     ),
                     SizedBox(height: 2),
                     CustomText(
@@ -77,21 +75,21 @@ class AdminContainer extends StatelessWidget {
                       color: AppColors.black,
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
-                      maxLines: 3,
+                      maxLines: 2,
                     ),
                     SizedBox(height: 5),
                     CustomText(
-                      text:
-                          "${AppConstance().getDateDifferenceFormatted(DateTime.now(), userEntity.expireDate)}",
+                      text: AppConstance().getDateDifferenceFormatted(
+                          DateTime.now(), userEntity.expireDate),
                       color: AppColors.grey,
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
-                      maxLines: 3,
+                      maxLines: 2,
                     ),
                   ],
                 ),
               ),
-                OptionsWidget(userEntity: userEntity, homeCubit: homeCubit),
+              OptionsWidget(userEntity: userEntity, homeCubit: homeCubit),
             ],
           ),
         ),
@@ -152,14 +150,13 @@ class OptionsWidget extends StatelessWidget {
                       MagicRouter.pop();
                       showCupertinoDialog(
                         context: context,
-                        builder:
-                            (_) => BlocProvider.value(
-                              value: homeCubit,
-                              child: ActivationAccountsDialog(
-                                cubit: homeCubit,
-                                userEntity: userEntity,
-                              ),
-                            ),
+                        builder: (_) => BlocProvider.value(
+                          value: homeCubit,
+                          child: ActivationAccountsDialog(
+                            cubit: homeCubit,
+                            userEntity: userEntity,
+                          ),
+                        ),
                       );
                     },
                     text: userEntity.active ? 'ايقاف ' : 'تفعيل',
@@ -170,14 +167,13 @@ class OptionsWidget extends StatelessWidget {
                       MagicRouter.pop();
                       showCupertinoDialog(
                         context: context,
-                        builder:
-                            (_) => BlocProvider.value(
-                              value: homeCubit,
-                              child: EditExpireDateDialog(
-                                cubit: homeCubit,
-                                userEntity: userEntity,
-                              ),
-                            ),
+                        builder: (_) => BlocProvider.value(
+                          value: homeCubit,
+                          child: EditExpireDateDialog(
+                            cubit: homeCubit,
+                            userEntity: userEntity,
+                          ),
+                        ),
                       );
                     },
                     text: "تعديل تاريخ الانتهاء",
@@ -188,14 +184,13 @@ class OptionsWidget extends StatelessWidget {
                       MagicRouter.pop();
                       showCupertinoDialog(
                         context: context,
-                        builder:
-                            (_) => BlocProvider.value(
-                              value: homeCubit,
-                              child: ResetPasswordDialog(
-                                cubit: homeCubit,
-                                userEntity: userEntity,
-                              ),
-                            ),
+                        builder: (_) => BlocProvider.value(
+                          value: homeCubit,
+                          child: ResetPasswordDialog(
+                            cubit: homeCubit,
+                            userEntity: userEntity,
+                          ),
+                        ),
                       );
                     },
                     text: "اعادة تعيين كلمة المرور",

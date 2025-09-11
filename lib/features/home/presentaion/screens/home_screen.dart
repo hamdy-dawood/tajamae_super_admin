@@ -8,6 +8,7 @@ import 'package:tajamae_super_admin/app/utils/image_manager.dart';
 import 'package:tajamae_super_admin/app/widget/custom_text_form_field.dart';
 import 'package:tajamae_super_admin/app/widget/emit_failed_item.dart';
 import 'package:tajamae_super_admin/app/widget/emit_loading_item.dart';
+import 'package:tajamae_super_admin/app/widget/grid_view_pagination.dart';
 import 'package:tajamae_super_admin/app/widget/list_view_pagination.dart';
 import 'package:tajamae_super_admin/app/widget/svg_icons.dart';
 import 'package:tajamae_super_admin/features/home/presentaion/cubit/home_cubit.dart';
@@ -24,11 +25,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (context) =>
-              getIt<HomeCubit>()
-                ..getNotificationsCount()
-                ..getUsers(),
+      create: (context) => getIt<HomeCubit>()
+        ..getNotificationsCount()
+        ..getUsers(),
       child: HomeBody(),
     );
   }
@@ -98,11 +97,10 @@ class HomeBody extends StatelessWidget {
             onPressed: () {
               showCupertinoDialog(
                 context: context,
-                builder:
-                    (_) => BlocProvider.value(
-                      value: cubit,
-                      child: LogoutDialog(cubit: cubit),
-                    ),
+                builder: (_) => BlocProvider.value(
+                  value: cubit,
+                  child: LogoutDialog(cubit: cubit),
+                ),
               );
             },
             icon: SvgIcon(
@@ -176,39 +174,70 @@ class HomeBody extends StatelessWidget {
                         },
                       );
                     } else if (cubit.users.isEmpty) {
-                      return SizedBox();
+                      return const SizedBox();
                     }
-                    return ListViewPagination(
-                      onRefresh: () async {
-                        await Future.delayed(Duration(seconds: 1));
-                        cubit.clearUsersData();
-                        cubit.getUsers();
-                      },
-                      addEvent: () {
-                        cubit.getUsers();
-                      },
-                      itemCount:
-                          cubit.hasReachedMax
-                              ? cubit.users.length
-                              : cubit.users.length + 1,
-                      itemBuilder: (context, index) {
-                        if (index == cubit.users.length) {
-                          return const EmitLoadingItem(size: 20);
+
+                    return LayoutBuilder(
+                      builder: (context, constraints) {
+                        final isWide = constraints.maxWidth > 900;
+
+                        if (isWide) {
+                          return GridViewPagination(
+                            addEvent: () {
+                              cubit.getUsers();
+                            },
+                            itemCount: cubit.hasReachedMax
+                                ? cubit.users.length
+                                : cubit.users.length + 1,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 4,
+                              childAspectRatio: (context.screenWidth / 3) / 220,
+                            ),
+                            itemBuilder: (context, index) {
+                              if (index == cubit.users.length) {
+                                return const Center(
+                                    child: EmitLoadingItem(size: 20));
+                              }
+                              return AdminContainer(
+                                userEntity: cubit.users[index],
+                                homeCubit: cubit,
+                              );
+                            },
+                          );
+                        } else {
+                          return ListViewPagination(
+                            onRefresh: () async {
+                              await Future.delayed(const Duration(seconds: 1));
+                              cubit.clearUsersData();
+                              cubit.getUsers();
+                            },
+                            addEvent: () {
+                              cubit.getUsers();
+                            },
+                            itemCount: cubit.hasReachedMax
+                                ? cubit.users.length
+                                : cubit.users.length + 1,
+                            itemBuilder: (context, index) {
+                              if (index == cubit.users.length) {
+                                return const EmitLoadingItem(size: 20);
+                              }
+                              return Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: cubit.hasReachedMax
+                                      ? index == cubit.users.length - 1
+                                          ? 80
+                                          : 0
+                                      : 0,
+                                ),
+                                child: AdminContainer(
+                                  userEntity: cubit.users[index],
+                                  homeCubit: cubit,
+                                ),
+                              );
+                            },
+                          );
                         }
-                        return Padding(
-                          padding: EdgeInsets.only(
-                            bottom:
-                                cubit.hasReachedMax
-                                    ? index == cubit.users.length - 1
-                                        ? 80
-                                        : 0
-                                    : 0,
-                          ),
-                          child: AdminContainer(
-                            userEntity: cubit.users[index],
-                            homeCubit: cubit,
-                          ),
-                        );
                       },
                     );
                   },

@@ -138,10 +138,9 @@ class OtpFormField extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius),
         border: Border.all(
           width: 1,
-          color:
-              hasError
-                  ? AppColors.red
-                  : focused
+          color: hasError
+              ? AppColors.red
+              : focused
                   ? AppColors.primary
                   : AppColors.border,
         ),

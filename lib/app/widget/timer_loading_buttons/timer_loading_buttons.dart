@@ -20,8 +20,7 @@ class TimerLoadingButton extends StatefulWidget {
     Function startLoading,
     Function stopLoading,
     ButtonState btnState,
-  )?
-  onTap;
+  )? onTap;
   final Color? color;
   final Color? focusColor;
   final Color? hoverColor;
@@ -74,11 +73,11 @@ class TimerLoadingButton extends StatefulWidget {
     this.disabledElevation,
     this.disabledColor,
     this.disabledTextColor,
-  }) : assert(elevation == null || elevation >= 0.0),
-       assert(focusElevation == null || focusElevation >= 0.0),
-       assert(hoverElevation == null || hoverElevation >= 0.0),
-       assert(highlightElevation == null || highlightElevation >= 0.0),
-       assert(disabledElevation == null || disabledElevation >= 0.0);
+  })  : assert(elevation == null || elevation >= 0.0),
+        assert(focusElevation == null || focusElevation >= 0.0),
+        assert(hoverElevation == null || hoverElevation >= 0.0),
+        assert(highlightElevation == null || highlightElevation >= 0.0),
+        assert(disabledElevation == null || disabledElevation >= 0.0);
 
   @override
   TimerLoadingButtonState createState() => TimerLoadingButtonState();
@@ -180,10 +179,10 @@ class TimerLoadingButtonState extends State<TimerLoadingButton>
           borderRadius: BorderRadius.circular(
             widget.roundLoadingShape
                 ? lerpDouble(
-                  widget.borderRadius,
-                  widget.height / 2,
-                  _animation.value,
-                )!
+                    widget.borderRadius,
+                    widget.height / 2,
+                    _animation.value,
+                  )!
                 : widget.borderRadius,
           ),
         ),
@@ -205,10 +204,10 @@ class TimerLoadingButtonState extends State<TimerLoadingButton>
               borderRadius: BorderRadius.circular(
                 widget.roundLoadingShape
                     ? lerpDouble(
-                      widget.borderRadius,
-                      widget.height / 2,
-                      _animation.value,
-                    )!
+                        widget.borderRadius,
+                        widget.height / 2,
+                        _animation.value,
+                      )!
                     : widget.borderRadius,
               ),
             ),
@@ -290,11 +289,11 @@ class ArgonTimerButton extends StatefulWidget {
     this.disabledColor,
     this.disabledTextColor,
     this.initialTimer = 0,
-  }) : assert(elevation == null || elevation >= 0.0),
-       assert(focusElevation == null || focusElevation >= 0.0),
-       assert(hoverElevation == null || hoverElevation >= 0.0),
-       assert(highlightElevation == null || highlightElevation >= 0.0),
-       assert(disabledElevation == null || disabledElevation >= 0.0);
+  })  : assert(elevation == null || elevation >= 0.0),
+        assert(focusElevation == null || focusElevation >= 0.0),
+        assert(hoverElevation == null || hoverElevation >= 0.0),
+        assert(highlightElevation == null || highlightElevation >= 0.0),
+        assert(disabledElevation == null || disabledElevation >= 0.0);
 
   @override
   ArgonTimerButtonState createState() => ArgonTimerButtonState();
@@ -433,10 +432,10 @@ class ArgonTimerButtonState extends State<ArgonTimerButton>
           borderRadius: BorderRadius.circular(
             widget.roundLoadingShape
                 ? lerpDouble(
-                  widget.borderRadius,
-                  widget.height / 2,
-                  _animation.value,
-                )!
+                    widget.borderRadius,
+                    widget.height / 2,
+                    _animation.value,
+                  )!
                 : widget.borderRadius,
           ),
         ),
@@ -468,18 +467,17 @@ class ArgonTimerButtonState extends State<ArgonTimerButton>
           onPressed: () {
             widget.onTap!((newCounter) => startTimer(newCounter), btn);
           },
-          child:
-              btn == ButtonState.Idle
-                  ? widget.child
-                  : StreamBuilder(
-                    stream: emptyStream,
-                    builder: (context, snapshot) {
-                      if (secondsLeft == 0) {
-                        animateReverse();
-                      }
-                      return widget.loader!(secondsLeft);
-                    },
-                  ),
+          child: btn == ButtonState.Idle
+              ? widget.child
+              : StreamBuilder(
+                  stream: emptyStream,
+                  builder: (context, snapshot) {
+                    if (secondsLeft == 0) {
+                      animateReverse();
+                    }
+                    return widget.loader!(secondsLeft);
+                  },
+                ),
         ),
       ),
     );

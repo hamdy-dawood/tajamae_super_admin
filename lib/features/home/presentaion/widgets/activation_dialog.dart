@@ -25,10 +25,9 @@ class ActivationAccountsDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
       content: CustomText(
-        text:
-            userEntity.active
-                ? 'هل انت متأكد من ايقاف ${userEntity.displayName}؟'
-                : 'هل انت متأكد من تفعيل ${userEntity.displayName}؟',
+        text: userEntity.active
+            ? 'هل انت متأكد من ايقاف ${userEntity.displayName}؟'
+            : 'هل انت متأكد من تفعيل ${userEntity.displayName}؟',
         color: AppColors.black,
         fontWeight: FontWeight.w600,
         textAlign: TextAlign.center,

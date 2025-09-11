@@ -63,25 +63,23 @@ class _LoadingWidget extends StatelessWidget {
         child: GestureDetector(
           onTap: () {},
           child: Center(
-            child:
-                widget ??
+            child: widget ??
                 SizedBox.square(
                   dimension: loadingWidth,
-                  child:
-                      gifOrImagePath != null
-                          ? Image.asset(gifOrImagePath!)
-                          : Container(
-                            height: 100,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: const CupertinoActivityIndicator(
-                              color: Colors.black38,
-                              radius: 12,
-                            ),
+                  child: gifOrImagePath != null
+                      ? Image.asset(gifOrImagePath!)
+                      : Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
                           ),
+                          child: const CupertinoActivityIndicator(
+                            color: Colors.black38,
+                            radius: 12,
+                          ),
+                        ),
                 ),
           ),
         ),
