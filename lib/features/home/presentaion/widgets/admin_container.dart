@@ -45,7 +45,7 @@ class AdminContainer extends StatelessWidget {
           decoration: BoxDecoration(
             color:
                 userEntity.deleted
-                    ? AppColors.red.withValues(alpha: 0.5)
+                    ? AppColors.red.withOpacity(0.5)
                     : AppColors.white,
             borderRadius: BorderRadius.circular(10),
           ),
