@@ -45,7 +45,7 @@ class LoginBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 0.1.sh),
-                Image.asset(ImageManager.homeLogo, height: 80),
+                Center(child: Image.asset(ImageManager.homeLogo, height: 80)),
                 const SizedBox(height: 50),
                 const CustomText(
                   text: "تسجيل الدخول",
